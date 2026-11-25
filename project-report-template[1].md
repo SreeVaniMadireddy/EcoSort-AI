@@ -2,12 +2,9 @@
 ## Smart Recycling and Waste Segregation Assistant
 **Bharat AI-SoC Student Challenge 2026–27**  
 **Problem Statement 2 – Environment & Climate**
-
-**Team:** [Enter team name]  
-**Members:** [Enter all names]  
-**College / Department:** [Enter details]  
-**Faculty mentor:** [Enter details, or state unavailable if the form permits]
-
+**Team Members:** N.Poornima,K.Mounika,M.Sree Vani 
+**College / Department:** Vishnu Institute of Technology-Electronics and Communication Engineering 
+**Faculty mentor:** B.V.V.Satyanarayana
 ## Abstract
 EcoSort AI is an early-stage software prototype for a smart recycling and waste segregation assistant. The current version allows users to select a waste category and view general handling and disposal guidance. It also provides browser-based text-to-speech. The current implementation is rule-based and relies on user selection. Automatic image recognition, Llama inference using ExecuTorch, Arm deployment and FPGA acceleration are not implemented in this version.
 
@@ -30,7 +27,8 @@ The current prototype supports plastic, paper, metal, glass, organic/food waste 
 Refer to `architecture.md`. The current implementation includes category selection, rule-based guidance and browser text-to-speech. AI image classification, Llama/ExecuTorch, Arm deployment and FPGA acceleration are future work.
 
 ## 6. Hardware and software
-**Hardware actually used:** [List only devices actually used, e.g. laptop.]  
+**Hardware actually used:** 1. Laptop – Used for developing and testing the EcoSort AI prototype.
+2. Android Smartphone – Used for accessing and testing the application.
 **Software:** HTML, CSS, JavaScript and a modern web browser.
 
 ## 7. Methodology
@@ -75,5 +73,3 @@ This version is a browser-based software prototype and does not use an FPGA acce
 ## 12. Conclusion
 EcoSort AI currently demonstrates a basic waste guidance application with manual category selection and voice output. It provides a foundation for further development. The main AI, Arm/ExecuTorch and FPGA components remain future work.
 
-## References
-[Add only sources actually consulted.]
