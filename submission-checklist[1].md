@@ -1,0 +1,17 @@
+# Submission checklist
+- [ ] Confirm project title and PS2 selection.
+- [ ] Replace all placeholders with correct team and college details.
+- [ ] Test all six categories in `index.html`.
+- [ ] Test browser text-to-speech.
+- [ ] Capture genuine screenshots.
+- [ ] Fill report results using actual test outcomes.
+- [ ] Do not claim unimplemented AI, Llama, ExecuTorch, Arm or FPGA features.
+- [ ] Upload extracted files to a GitHub repository.
+- [ ] Set repository visibility to Public.
+- [ ] Record a two-minute demo using the actual prototype.
+- [ ] Upload video to YouTube or Google Drive and make it Public.
+- [ ] Export report as PDF or DOCX.
+- [ ] Test repository and video links in a private/incognito window.
+- [ ] Complete the official form from the email.
+- [ ] Review all fields and attachments before submitting once.
+- [ ] Save submission confirmation.

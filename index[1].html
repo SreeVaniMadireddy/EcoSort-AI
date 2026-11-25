@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>EcoSort AI</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:16px Arial,sans-serif;background:#f3f8f4;color:#183329}header{background:#176b45;color:white;padding:28px}main{max-width:950px;margin:24px auto;padding:0 16px}.notice,.card{background:white;border:1px solid #d8e7dc;border-radius:14px;padding:18px;margin-bottom:16px}.notice{background:#fff6dd;color:#614d15}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.choices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.choices button{background:#eef7f0;color:#185d3b;border:1px solid #c8dfcf}.choices button.active{background:#176b45;color:white}button{padding:12px;border:0;border-radius:9px;background:#176b45;color:white;cursor:pointer;margin:8px 6px 0 0;font-weight:bold}button.secondary{background:#e8f3eb;color:#176b45;border:1px solid #c8dfcf}#result{background:#eaf6ee;padding:15px;border-radius:10px;min-height:170px}input{padding:11px;width:100%;border:1px solid #c8d9ce;border-radius:8px}label{display:block;margin:14px 0 6px;font-weight:bold}.small{font-size:13px;color:#61746a}footer{text-align:center;color:#66786e;font-size:12px;padding:20px}@media(max-width:650px){.grid{grid-template-columns:1fr}.choices{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<header><h1>♻️ EcoSort AI</h1><p>Smart Recycling & Waste Segregation Assistant</p></header>
+<main>
+<div class="notice"><b>Prototype disclosure:</b> This version demonstrates manual category selection, disposal guidance and browser voice output. It does not yet perform AI image recognition, Llama/ExecuTorch inference or FPGA acceleration.</div>
+<div class="grid">
+<section class="card"><h2>1. Select waste category</h2><p class="small">Choose the category of the item.</p>
+<div class="choices" id="choices">
+<button type="button" data-k="plastic">🧴 Plastic</button><button type="button" data-k="paper">📄 Paper</button><button type="button" data-k="metal">🥫 Metal</button><button type="button" data-k="glass">🫙 Glass</button><button type="button" data-k="organic">🍃 Organic</button><button type="button" data-k="ewaste">🔋 E-waste</button>
+</div><label for="item">Optional item name</label><input id="item" placeholder="Example: empty water bottle"><button id="go">Get segregation advice</button>
+<p class="small">The category is selected by the user; the app does not automatically recognize an image.</p></section>
+<section class="card"><h2>2. Recommendation</h2><div id="result"><h3>Waiting for selection</h3><p>Select a category to view guidance.</p></div><button id="speak" class="secondary" disabled>🔊 Read aloud</button><button id="stop" class="secondary">Stop voice</button></section>
+</div>
+<section class="card"><h2>How it works</h2><ol><li>User selects a waste category.</li><li>Application displays general handling and collection advice.</li><li>Browser text-to-speech reads the advice aloud where supported.</li></ol><h3>Safety reminders</h3><ul><li>Do not handle broken glass with bare hands.</li><li>Keep batteries and electronics out of ordinary waste bins.</li><li>Follow local municipal waste rules.</li></ul></section>
+</main><footer>EcoSort AI · Initial software prototype</footer>
+<script>
+const data={
+plastic:["Plastic","Dry recyclable collection, where accepted","Empty the container. Rinse it if appropriate and let it dry. Different plastic types may have different local rules.","Keep accepted plastic separate from food waste and take it to an authorized collection point."],
+paper:["Paper","Dry paper and cardboard collection","Keep paper clean and dry. Oil- or food-contaminated paper may not be accepted in ordinary paper recycling.","Bundle clean paper and cardboard for local paper recycling."],
+metal:["Metal","Metal recycling collection","Empty containers and safely contain sharp edges. Batteries and pressurized containers need separate handling.","Take accepted cans and scrap metal to an authorized collection point."],
+glass:["Glass","Designated glass collection, where available","Do not touch broken glass with bare hands. Some services accept only specified glass types.","Place accepted intact glass in the designated stream and follow local instructions for broken glass."],
+organic:["Organic / food waste","Wet-waste collection or composting","Keep food scraps separate from dry recyclables. Do not add plastic wrappers to compost.","Use municipal wet-waste collection or a suitable composting system."],
+ewaste:["Electronic waste","Authorized e-waste collection","Do not put electronics, batteries or cables in ordinary bins. Do not dismantle batteries yourself.","Use an authorized e-waste collection centre or manufacturer take-back programme."]
+};
+let selected="",spoken="";
+const result=document.getElementById("result"),speak=document.getElementById("speak");
+document.querySelectorAll("[data-k]").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll("[data-k]").forEach(x=>x.classList.remove("active"));b.classList.add("active");selected=b.dataset.k;}));
+document.getElementById("go").addEventListener("click",()=>{if(!selected){result.innerHTML="<h3>Select a category first</h3>";speak.disabled=true;return;}const d=data[selected],item=document.getElementById("item").value.trim();spoken=`${d[0]}. Suggested collection: ${d[1]}. ${d[2]} ${d[3]}`;result.innerHTML=`<h3>${d[0]}</h3>${item?`<p><b>Item:</b> ${esc(item)}</p>`:""}<p><b>Suggested collection:</b> ${d[1]}</p><p><b>Handling:</b> ${d[2]}</p><p><b>Next step:</b> ${d[3]}</p>`;speak.disabled=false;});
+function esc(s){return s.replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[c]));}
+speak.addEventListener("click",()=>{if(!spoken)return;if(!("speechSynthesis"in window)){alert("Speech is not supported in this browser.");return;}speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(spoken);u.lang="en-IN";speechSynthesis.speak(u);});
+document.getElementById("stop").addEventListener("click",()=>{if("speechSynthesis"in window)speechSynthesis.cancel();});
+</script></body></html>
