@@ -35,7 +35,10 @@ No external libraries are required.
 5. Add a physical sorting mechanism only after safety testing.
 
 ## Team
-Replace this section with the correct team, college, department and mentor details.
+Team members-N.Poornima
+            M. Sree Vani
+            K.Mounika
+College-Vishnu Institute Of Technology
+Department-ECE
+Mentor details-B.V.V.Satyanarayana
 
-## References
-Add only datasets, papers and technical documentation actually used.
